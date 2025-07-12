@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Globe, MessageCircle, Twitter, FileText, Users } from 'lucide-react'
+import { ExternalLink, Globe, MessageCircle, Twitter, FileText, Users, Crown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
@@ -19,6 +19,13 @@ const links = [
     description: "Learn about our conditional finance technology",
     url: "https://zirodelta.com/docs",
     icon: FileText,
+    primary: true
+  },
+  {
+    title: "Whale Verification",
+    description: "Verify your ZDLT holdings and join the elite whale community",
+    url: "https://whale.zirodelta.com/",
+    icon: Crown,
     primary: true
   },
   {
