@@ -135,7 +135,7 @@ export default function LinksPage() {
                           button.textContent = originalText
                         }, 2000)
                       }
-                    } catch (err) {
+                    } catch {
                       // Fallback for older browsers or when clipboard API fails
                       const textArea = document.createElement('textarea')
                       textArea.value = '4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf'
