@@ -123,22 +123,67 @@ export default function LinksPage() {
                   4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf
                 </code>
                 <button
-                  onClick={async () => {
+                  onClick={async (e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    
+                    const contractAddress = '4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf'
+                    const button = e.currentTarget
+                    const originalText = button.textContent
+                    
                     try {
-                      await navigator.clipboard.writeText('4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf')
-                      // Optional: Add visual feedback
-                      const button = document.activeElement as HTMLButtonElement
-                      if (button) {
-                        const originalText = button.textContent
-                        button.textContent = 'Copied!'
-                        setTimeout(() => {
-                          button.textContent = originalText
-                        }, 2000)
+                      // Check if we're on mobile devices (iOS or Android)
+                      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+                      const isAndroid = /Android/.test(navigator.userAgent)
+                      const isMobile = isIOS || isAndroid
+                      
+                      if (isMobile) {
+                        // Mobile-specific clipboard handling (iOS and Android)
+                        const textArea = document.createElement('textarea')
+                        textArea.value = contractAddress
+                        textArea.style.position = 'absolute'
+                        textArea.style.left = '-9999px'
+                        textArea.style.top = '0'
+                        textArea.setAttribute('readonly', '')
+                        textArea.style.opacity = '0'
+                        textArea.style.pointerEvents = 'none'
+                        document.body.appendChild(textArea)
+                        
+                        // Focus and select for mobile browsers
+                        textArea.focus()
+                        textArea.setSelectionRange(0, 999999)
+                        
+                        // For better Android support
+                        if (isAndroid) {
+                          textArea.select()
+                        }
+                        
+                        // For better iOS support  
+                        if (isIOS) {
+                          const range = document.createRange()
+                          range.selectNodeContents(textArea)
+                          const selection = window.getSelection()
+                          selection?.removeAllRanges()
+                          selection?.addRange(range)
+                        }
+                        
+                        document.execCommand('copy')
+                        document.body.removeChild(textArea)
+                      } else {
+                        // Modern clipboard API for desktop browsers
+                        await navigator.clipboard.writeText(contractAddress)
                       }
+                      
+                      // Visual feedback
+                      button.textContent = 'Copied!'
+                      setTimeout(() => {
+                        button.textContent = originalText
+                      }, 2000)
+                      
                     } catch {
-                      // Fallback for older browsers or when clipboard API fails
+                      // Final fallback
                       const textArea = document.createElement('textarea')
-                      textArea.value = '4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf'
+                      textArea.value = contractAddress
                       textArea.style.position = 'fixed'
                       textArea.style.left = '-999999px'
                       textArea.style.top = '-999999px'
@@ -149,14 +194,10 @@ export default function LinksPage() {
                       textArea.remove()
                       
                       // Visual feedback for fallback
-                      const button = document.activeElement as HTMLButtonElement
-                      if (button) {
-                        const originalText = button.textContent
-                        button.textContent = 'Copied!'
-                        setTimeout(() => {
-                          button.textContent = originalText
-                        }, 2000)
-                      }
+                      button.textContent = 'Copied!'
+                      setTimeout(() => {
+                        button.textContent = originalText
+                      }, 2000)
                     }
                   }}
                   className="text-brand-teal hover:text-brand-teal/80 transition-colors text-xs flex-shrink-0"
