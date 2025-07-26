@@ -123,8 +123,41 @@ export default function LinksPage() {
                   4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf
                 </code>
                 <button
-                  onClick={() => {
-                    navigator.clipboard.writeText('4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf')
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText('4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf')
+                      // Optional: Add visual feedback
+                      const button = document.activeElement as HTMLButtonElement
+                      if (button) {
+                        const originalText = button.textContent
+                        button.textContent = 'Copied!'
+                        setTimeout(() => {
+                          button.textContent = originalText
+                        }, 2000)
+                      }
+                    } catch (err) {
+                      // Fallback for older browsers or when clipboard API fails
+                      const textArea = document.createElement('textarea')
+                      textArea.value = '4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf'
+                      textArea.style.position = 'fixed'
+                      textArea.style.left = '-999999px'
+                      textArea.style.top = '-999999px'
+                      document.body.appendChild(textArea)
+                      textArea.focus()
+                      textArea.select()
+                      document.execCommand('copy')
+                      textArea.remove()
+                      
+                      // Visual feedback for fallback
+                      const button = document.activeElement as HTMLButtonElement
+                      if (button) {
+                        const originalText = button.textContent
+                        button.textContent = 'Copied!'
+                        setTimeout(() => {
+                          button.textContent = originalText
+                        }, 2000)
+                      }
+                    }
                   }}
                   className="text-brand-teal hover:text-brand-teal/80 transition-colors text-xs flex-shrink-0"
                 >
