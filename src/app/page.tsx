@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { ChevronRight, Globe, FileText, Crown } from 'lucide-react'
+import Image from 'next/image'
 
 const links = [
   {
@@ -47,10 +47,12 @@ export default function LinksPage() {
     <div className="h-screen overflow-hidden" style={{ background: 'white', fontFamily: 'Montserrat, sans-serif' }}>
       {/* Background */}
       <div className="fixed inset-0">
-        <img
+        <Image
           src="/banner/bg-dark.png"
           alt="Background"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
       </div>
       
@@ -59,16 +61,18 @@ export default function LinksPage() {
         
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <img 
+          <Image 
             src="/zirolight.svg" 
             alt="ZiroDelta" 
+            width={80}
+            height={60}
             className="w-20 h-15 sm:w-24 sm:h-18 mx-auto mb-3 sm:mb-4"
           />
           <h1 className="text-xl sm:text-2xl font-bold text-brand-emerald mb-2 sm:mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Official Links
           </h1>
           <p className="text-xs sm:text-sm text-brand-emerald/80 mb-2 sm:mb-3 max-w-xs sm:max-w-md mx-auto px-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Your gateway to Zirodelta's ecosystem - verified links to our platform, documentation, and community channels.
+            Your gateway to ZiroDelta&apos;s ecosystem - verified links to our platform, documentation, and community channels.
           </p>
           <div className="w-16 sm:w-20 h-px bg-brand-emerald/50 mx-auto"></div>
         </div>
@@ -90,12 +94,16 @@ export default function LinksPage() {
                   {link.isLucideIcon && IconComponent ? (
                     <IconComponent className="w-6 h-6 sm:w-4 sm:h-4 text-white mr-5 sm:mr-3 flex-shrink-0" />
                   ) : (
-                    <img 
-                      src={link.iconUrl} 
-                      alt={`${link.title} icon`}
-                      className="w-6 h-6 sm:w-4 sm:h-4 mr-5 sm:mr-3 flex-shrink-0"
-                      style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-                    />
+                    link.iconUrl && (
+                      <Image 
+                        src={link.iconUrl} 
+                        alt={`${link.title} icon`}
+                        width={24}
+                        height={24}
+                        className="w-6 h-6 sm:w-4 sm:h-4 mr-5 sm:mr-3 flex-shrink-0"
+                        style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                      />
+                    )
                   )}
                   <span className="text-lg sm:text-base text-white font-medium truncate">{link.title}</span>
                 </div>
