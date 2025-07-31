@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZiroDelta Links",
+  title: "Zirodelta Links",
   description: "Your gateway to the ZDLT ecosystem.",
 };
 

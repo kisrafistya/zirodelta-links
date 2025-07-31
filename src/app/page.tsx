@@ -63,7 +63,7 @@ export default function LinksPage() {
         <div className="text-center mb-6 sm:mb-8">
           <Image 
             src="/zirolight.svg" 
-            alt="ZiroDelta" 
+            alt="Zirodelta" 
             width={80}
             height={60}
             className="w-20 h-15 sm:w-24 sm:h-18 mx-auto mb-3 sm:mb-4"
@@ -72,7 +72,7 @@ export default function LinksPage() {
             Official Links
           </h1>
           <p className="text-xs sm:text-sm text-brand-emerald/80 mb-2 sm:mb-3 max-w-xs sm:max-w-md mx-auto px-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Your gateway to ZiroDelta&apos;s ecosystem - verified links to our platform, documentation, and community channels.
+            Your gateway to Zirodelta&apos;s ecosystem - verified links to our platform, documentation, and community channels.
           </p>
           <div className="w-16 sm:w-20 h-px bg-brand-emerald/50 mx-auto"></div>
         </div>
