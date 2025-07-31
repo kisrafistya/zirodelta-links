@@ -11,13 +11,13 @@ const links = [
     isLucideIcon: true,
   },
   {
-    title: "Protocol Docs", 
-    url: "https://zirodelta.com/docs",
+    title: "Bot Docs", 
+    url: "https://bot.zirodelta.com/docs",
     icon: FileText,
     isLucideIcon: true,
   },
   {
-    title: "Whale Verification",
+    title: "Whale Club",
     url: "https://whale.zirodelta.com/",
     icon: Crown,
     isLucideIcon: true,
