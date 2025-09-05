@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronRight, Globe, FileText, Crown } from 'lucide-react'
+import { ChevronRight, Globe, FileText } from 'lucide-react'
 import Image from 'next/image'
 
 const links = [
@@ -14,12 +14,6 @@ const links = [
     title: "Bot Docs", 
     url: "https://bot.zirodelta.com/docs",
     icon: FileText,
-    isLucideIcon: true,
-  },
-  {
-    title: "Whale Club",
-    url: "https://whale.zirodelta.com/",
-    icon: Crown,
     isLucideIcon: true,
   },
   {
