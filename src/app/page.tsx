@@ -1,39 +1,76 @@
+
 'use client'
 
 import { ChevronRight, Globe, FileText } from 'lucide-react'
 import Image from 'next/image'
+import { CollapsibleCard } from '@/components/ui/collapsible-card'
 
-const links = [
+type LinkItem = {
+  title: string
+  url: string
+  isLucideIcon: boolean
+  icon?: any
+  iconUrl?: string
+}
+
+type LinkCategory = {
+  title: string
+  defaultOpen?: boolean
+  items: LinkItem[]
+}
+
+const linkCategories: LinkCategory[] = [
   {
-    title: "Main Website",
-    url: "https://www.zirodelta.com/",
-    icon: Globe,
-    isLucideIcon: true,
+    title: 'Official Website',
+    defaultOpen: true,
+    items: [
+      {
+        title: 'Main Website',
+        url: 'https://www.zirodelta.com/',
+        icon: Globe,
+        isLucideIcon: true,
+      },
+    ],
   },
   {
-    title: "Bot Docs", 
-    url: "https://bot.zirodelta.com/docs",
-    icon: FileText,
-    isLucideIcon: true,
+    title: 'Community',
+    items: [
+      {
+        title: 'Telegram',
+        url: 'https://t.me/zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/telegram.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Discord',
+        url: 'https://discord.gg/YHW275Vpn3',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg',
+        isLucideIcon: false,
+      },
+    ],
   },
   {
-    title: "Telegram",
-    url: "https://t.me/zirodelta",
-    iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/telegram.svg",
-    isLucideIcon: false,
+    title: 'Publicity',
+    items: [
+      {
+        title: 'Twitter / X',
+        url: 'https://x.com/zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg',
+        isLucideIcon: false,
+      },
+    ],
   },
   {
-    title: "Twitter / X",
-    url: "https://x.com/zirodelta",
-    iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg",
-    isLucideIcon: false,
+    title: 'Technical',
+    items: [
+      {
+        title: 'Medium',
+        url: 'https://medium.com/@Zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/medium.svg',
+        isLucideIcon: false,
+      },
+    ],
   },
-  {
-    title: "Discord",
-    url: "https://discord.gg/YHW275Vpn3",
-    iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg",
-    isLucideIcon: false,
-  }
 ]
 
 export default function LinksPage() {
@@ -71,40 +108,46 @@ export default function LinksPage() {
           <div className="w-16 sm:w-20 h-px bg-brand-emerald/50 mx-auto"></div>
         </div>
 
-        {/* Links */}
-        <div className="max-w-sm sm:max-w-2xl mx-auto space-y-4 sm:space-y-3 mb-6 sm:mb-8 flex-1 flex flex-col justify-center px-2 sm:px-0">
-          {links.map((link, index) => {
-            const IconComponent = link.isLucideIcon ? link.icon : null;
-            return (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between p-5 sm:p-3 bg-brand-emerald border border-brand-emerald rounded-xl hover:bg-brand-emerald hover:border-brand-teal transition-all duration-200 hover:scale-[1.02] min-h-[60px] sm:min-h-auto"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
-              >
-                <div className="flex items-center">
-                  {link.isLucideIcon && IconComponent ? (
-                    <IconComponent className="w-6 h-6 sm:w-4 sm:h-4 text-white mr-5 sm:mr-3 flex-shrink-0" />
-                  ) : (
-                    link.iconUrl && (
-                      <Image 
-                        src={link.iconUrl} 
-                        alt={`${link.title} icon`}
-                        width={24}
-                        height={24}
-                        className="w-6 h-6 sm:w-4 sm:h-4 mr-5 sm:mr-3 flex-shrink-0"
-                        style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-                      />
-                    )
-                  )}
-                  <span className="text-lg sm:text-base text-white font-medium truncate">{link.title}</span>
-                </div>
-                <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4 text-white/80 group-hover:text-white transition-colors flex-shrink-0" />
-              </a>
-            )
-          })}
+        {/* Links grouped in collapsible cards */}
+        <div className="max-w-sm sm:max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-1 flex flex-col justify-center px-2 sm:px-0">
+          {linkCategories.map((category, cIdx) => (
+            <CollapsibleCard key={cIdx} title={category.title} defaultOpen={category.defaultOpen}>
+              <div className="space-y-3 sm:space-y-3">
+                {category.items.map((link, index) => {
+                  const IconComponent = link.isLucideIcon ? link.icon : null
+                  return (
+                    <a
+                      key={index}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between p-5 sm:p-3 bg-brand-emerald border border-brand-emerald rounded-xl hover:bg-brand-emerald hover:border-brand-teal transition-all duration-200 hover:scale-[1.02] min-h-[60px] sm:min-h-auto"
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    >
+                      <div className="flex items-center">
+                        {link.isLucideIcon && IconComponent ? (
+                          <IconComponent className="w-6 h-6 sm:w-4 sm:h-4 text-white mr-5 sm:mr-3 flex-shrink-0" />
+                        ) : (
+                          link.iconUrl && (
+                            <Image
+                              src={link.iconUrl}
+                              alt={`${link.title} icon`}
+                              width={24}
+                              height={24}
+                              className="w-6 h-6 sm:w-4 sm:h-4 mr-5 sm:mr-3 flex-shrink-0"
+                              style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                            />
+                          )
+                        )}
+                        <span className="text-lg sm:text-base text-white font-medium truncate">{link.title}</span>
+                      </div>
+                      <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4 text-white/80 group-hover:text-white transition-colors flex-shrink-0" />
+                    </a>
+                  )
+                })}
+              </div>
+            </CollapsibleCard>
+          ))}
         </div>
 
         {/* Footer */}
