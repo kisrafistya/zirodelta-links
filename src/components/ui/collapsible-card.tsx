@@ -16,8 +16,8 @@ export function CollapsibleCard({ title, defaultOpen = false, children }: Collap
   return (
     <Card className="bg-white/10 border-white/20 backdrop-blur-md py-0 gap-0">
       <CardHeader className="flex flex-row items-center justify-between cursor-pointer select-none py-3" onClick={() => setOpen((v) => !v)}>
-        <CardTitle className="text-white/90 text-base sm:text-lg" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</CardTitle>
-        <ChevronRight className={`transition-transform duration-200 text-white/80 ${open ? 'rotate-90' : ''}`} />
+        <CardTitle className="text-brand-emerald text-base sm:text-lg" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</CardTitle>
+        <ChevronRight className={`transition-transform duration-200 text-brand-emerald/80 ${open ? 'rotate-90' : ''}`} />
       </CardHeader>
       {open && (
         <CardContent className="pt-0 pb-4">
