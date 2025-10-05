@@ -3,6 +3,7 @@
 'use client'
 
 import { ChevronRight, Globe } from 'lucide-react'
+import * as React from 'react'
 import type { LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import { CollapsibleCard } from '@/components/ui/collapsible-card'
@@ -76,6 +77,10 @@ const linkCategories: LinkCategory[] = [
 ]
 
 export default function LinksPage() {
+  const [openCategoryIndex, setOpenCategoryIndex] = React.useState<number>(() => {
+    const initiallyOpenIndex = linkCategories.findIndex((c) => c.defaultOpen)
+    return initiallyOpenIndex >= 0 ? initiallyOpenIndex : 0
+  })
   return (
     <div className="h-screen overflow-hidden" style={{ background: 'white', fontFamily: 'Montserrat, sans-serif' }}>
       {/* Background */}
@@ -113,7 +118,12 @@ export default function LinksPage() {
         {/* Links grouped in collapsible cards */}
         <div className="max-w-sm sm:max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-1 flex flex-col justify-center px-2 sm:px-0">
           {linkCategories.map((category, cIdx) => (
-            <CollapsibleCard key={cIdx} title={category.title} defaultOpen={category.defaultOpen}>
+            <CollapsibleCard
+              key={cIdx}
+              title={category.title}
+              open={openCategoryIndex === cIdx}
+              onToggle={() => setOpenCategoryIndex(cIdx)}
+            >
               <div className="space-y-3 sm:space-y-3">
                 {category.items.map((link, index) => {
                   const IconComponent = link.isLucideIcon ? link.icon : null
