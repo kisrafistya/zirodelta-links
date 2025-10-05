@@ -1,7 +1,9 @@
 
+
 'use client'
 
-import { ChevronRight, Globe, FileText } from 'lucide-react'
+import { ChevronRight, Globe } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import { CollapsibleCard } from '@/components/ui/collapsible-card'
 
@@ -9,7 +11,7 @@ type LinkItem = {
   title: string
   url: string
   isLucideIcon: boolean
-  icon?: any
+  icon?: LucideIcon
   iconUrl?: string
 }
 
