@@ -2,7 +2,7 @@
 
 'use client'
 
-import { ChevronRight, Globe } from 'lucide-react'
+import { Globe } from 'lucide-react'
 import * as React from 'react'
 import type { LucideIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -124,39 +124,38 @@ export default function LinksPage() {
               open={openCategoryIndex === cIdx}
               onToggle={() => setOpenCategoryIndex(cIdx)}
             >
-              <div className="space-y-3 sm:space-y-3">
-                {category.items.map((link, index) => {
-                  const IconComponent = link.isLucideIcon ? link.icon : null
-                  return (
-                    <a
-                      key={index}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-5 sm:p-3 bg-brand-emerald border border-brand-emerald rounded-xl hover:bg-brand-emerald hover:border-brand-teal transition-all duration-200 hover:scale-[1.02] min-h-[60px] sm:min-h-auto"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
-                    >
-                      <div className="flex items-center">
+              <div className="rounded-lg border border-brand-emerald bg-brand-emerald p-2 sm:p-2">
+                <div className="divide-y divide-white/20">
+                  {category.items.map((link, index) => {
+                    const IconComponent = link.isLucideIcon ? link.icon : null
+                    return (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 py-2 px-2 hover:bg-white/10 rounded-md transition-colors"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
                         {link.isLucideIcon && IconComponent ? (
-                          <IconComponent className="w-6 h-6 sm:w-4 sm:h-4 text-white mr-5 sm:mr-3 flex-shrink-0" />
+                          <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
                         ) : (
                           link.iconUrl && (
                             <Image
                               src={link.iconUrl}
                               alt={`${link.title} icon`}
-                              width={24}
-                              height={24}
-                              className="w-6 h-6 sm:w-4 sm:h-4 mr-5 sm:mr-3 flex-shrink-0"
+                              width={20}
+                              height={20}
+                              className="w-5 h-5 sm:w-4 sm:h-4"
                               style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
                             />
                           )
                         )}
-                        <span className="text-lg sm:text-base text-white font-medium truncate">{link.title}</span>
-                      </div>
-                      <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4 text-white/80 group-hover:text-white transition-colors flex-shrink-0" />
-                    </a>
-                  )
-                })}
+                        <span className="text-base sm:text-sm text-white font-medium truncate">{link.title}</span>
+                      </a>
+                    )
+                  })}
+                </div>
               </div>
             </CollapsibleCard>
           ))}
