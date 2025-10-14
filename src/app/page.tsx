@@ -14,6 +14,8 @@ type LinkItem = {
   isLucideIcon: boolean
   icon?: LucideIcon
   iconUrl?: string
+  disabled?: boolean
+  meta?: string
 }
 
 type LinkCategory = {
@@ -30,6 +32,12 @@ const linkCategories: LinkCategory[] = [
       {
         title: 'Main Website',
         url: 'https://www.zirodelta.com/',
+        icon: Globe,
+        isLucideIcon: true,
+      },
+      {
+        title: 'Fundingrates Markets',
+        url: 'https://zirodelta.ag',
         icon: Globe,
         isLucideIcon: true,
       },
@@ -61,16 +69,165 @@ const linkCategories: LinkCategory[] = [
         iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg',
         isLucideIcon: false,
       },
+      {
+        title: 'Instagram',
+        url: '#',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg',
+        isLucideIcon: false,
+        disabled: true,
+        meta: 'Coming soon',
+      },
+      {
+        title: 'TikTok',
+        url: 'https://www.tiktok.com/@zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'YouTube',
+        url: '#',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg',
+        isLucideIcon: false,
+        disabled: true,
+        meta: 'Coming soon',
+      },
     ],
   },
   {
-    title: 'Technical',
+    title: 'Community',
+    items: [
+      {
+        title: 'Telegram',
+        url: 'https://t.me/zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/telegram.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Discord',
+        url: 'https://discord.com/invite/YHW275Vpn3',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Zealy',
+        url: 'https://zealy.io/cw/zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zealy.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Galxe',
+        url: 'https://app.galxe.com/id/H5hMZtRLmzCKZc9oBWEjz9',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/galxe.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'CoinMarketCap',
+        url: 'https://coinmarketcap.com/community/profile/Zirodelta/',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/coinmarketcap.svg',
+        isLucideIcon: false,
+      },
+    ],
+  },
+  {
+    title: 'Technical writing',
     items: [
       {
         title: 'Medium',
         url: 'https://medium.com/@Zirodelta',
         iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/medium.svg',
         isLucideIcon: false,
+      },
+    ],
+  },
+  {
+    title: 'Business Partnership',
+    items: [
+      {
+        title: 'Bybit',
+        url: 'https://partner.bybit.com/b/ZIRODELTA',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bybit.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'KuCoin',
+        url: 'https://kucoin.cloud/r/af/zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kucoin.svg',
+        isLucideIcon: false,
+      },
+    ],
+  },
+  {
+    title: 'Ecosystem Partnership',
+    items: [
+      {
+        title: 'RainFi (Lending and Borrowing)',
+        url: 'https://app.rain.fi/borrow/ZDLT-SOL',
+        isLucideIcon: true,
+        icon: Globe,
+      },
+      {
+        title: 'Lavarage (Perpetual Trading)',
+        url: 'https://app.lavarage.xyz/?ref=ZDLT',
+        isLucideIcon: true,
+        icon: Globe,
+      },
+      {
+        title: 'ICM.run (DAO contributors)',
+        url: 'https://x.com/icmdotrun/status/1969498843885568086',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Patheon EX - BelieveGPT (Index Contributor)',
+        url: 'https://pnth.app/',
+        isLucideIcon: true,
+        icon: Globe,
+      },
+    ],
+  },
+  {
+    title: 'Listing',
+    items: [
+      {
+        title: 'LBank',
+        url: 'https://www.lbank.com/trade/zdlt_usdt',
+        isLucideIcon: true,
+        icon: Globe,
+      },
+      {
+        title: 'Gate Alpha',
+        url: 'https://www.gate.com/alpha/sol-4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gateio.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Gempump',
+        url: 'https://gempump.io/token/zirodelta',
+        isLucideIcon: true,
+        icon: Globe,
+      },
+    ],
+  },
+  {
+    title: 'Verified by',
+    items: [
+      {
+        title: 'Coingecko',
+        url: 'https://www.coingecko.com/en/coins/zirodelta',
+        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/coingecko.svg',
+        isLucideIcon: false,
+      },
+      {
+        title: 'Jupiter',
+        url: 'https://jup.ag/tokens/4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf',
+        isLucideIcon: true,
+        icon: Globe,
+      },
+      {
+        title: 'Solscan',
+        url: 'https://solscan.io/token/4PX31xRA1BaAyb2Js45ZKYp92VGWGp47yWeVs5CGVKbf',
+        isLucideIcon: true,
+        icon: Globe,
       },
     ],
   },
@@ -129,30 +286,37 @@ export default function LinksPage() {
                   {category.items.map((link, index) => {
                     const IconComponent = link.isLucideIcon ? link.icon : null
                     return (
-                      <a
-                        key={index}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 py-2 px-2 hover:bg-white/10 rounded-md transition-colors"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
-                      >
-                        {link.isLucideIcon && IconComponent ? (
-                          <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
+                      <div key={index} className="flex items-center justify-between py-2 px-2">
+                        <div className="flex items-center gap-3">
+                          {link.isLucideIcon && IconComponent ? (
+                            <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
+                          ) : (
+                            link.iconUrl && (
+                              <Image
+                                src={link.iconUrl}
+                                alt={`${link.title} icon`}
+                                width={20}
+                                height={20}
+                                className="w-5 h-5 sm:w-4 sm:h-4"
+                                style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                              />
+                            )
+                          )}
+                          <span className="text-base sm:text-sm text-white font-medium truncate">{link.title}</span>
+                        </div>
+                        {link.disabled ? (
+                          <span className="text-xs text-white/70 italic">{link.meta ?? 'Coming soon'}</span>
                         ) : (
-                          link.iconUrl && (
-                            <Image
-                              src={link.iconUrl}
-                              alt={`${link.title} icon`}
-                              width={20}
-                              height={20}
-                              className="w-5 h-5 sm:w-4 sm:h-4"
-                              style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-                            />
-                          )
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-white/90 hover:text-white underline underline-offset-4"
+                          >
+                            Visit
+                          </a>
                         )}
-                        <span className="text-base sm:text-sm text-white font-medium truncate">{link.title}</span>
-                      </a>
+                      </div>
                     )
                   })}
                 </div>
