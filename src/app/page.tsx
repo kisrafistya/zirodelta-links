@@ -252,7 +252,7 @@ export default function LinksPage() {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 h-screen flex flex-col justify-center container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div className="relative z-10 h-screen flex flex-col justify-center container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
@@ -273,21 +273,52 @@ export default function LinksPage() {
         </div>
 
         {/* Links grouped in collapsible cards */}
-        <div className="max-w-sm sm:max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-1 flex flex-col justify-center px-2 sm:px-0">
-          {linkCategories.map((category, cIdx) => (
-            <CollapsibleCard
-              key={cIdx}
-              title={category.title}
-              open={openCategoryIndex === cIdx}
-              onToggle={() => setOpenCategoryIndex(cIdx)}
-            >
-              <div className="rounded-lg border border-brand-emerald bg-brand-emerald p-2 sm:p-2">
-                <div className="divide-y divide-white/20">
-                  {category.items.map((link, index) => {
-                    const IconComponent = link.isLucideIcon ? link.icon : null
-                    return (
-                      <div key={index} className="flex items-center justify-between py-2 px-2">
-                        <div className="flex items-center gap-3">
+        <div className="w-full mx-auto mb-6 sm:mb-8 flex-1 px-2 sm:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+            {linkCategories.map((category, cIdx) => (
+              <CollapsibleCard
+                key={cIdx}
+                title={category.title}
+                open={openCategoryIndex === cIdx}
+                onToggle={() => setOpenCategoryIndex(cIdx)}
+              >
+                <div className="rounded-lg border border-brand-emerald bg-brand-emerald p-2 sm:p-2">
+                  <div className="divide-y divide-white/20">
+                    {category.items.map((link, index) => {
+                      const IconComponent = link.isLucideIcon ? link.icon : null
+                      if (link.disabled) {
+                        return (
+                          <div key={index} className="flex items-center justify-between py-2 px-2 opacity-70 cursor-not-allowed">
+                            <div className="flex items-center gap-3">
+                              {link.isLucideIcon && IconComponent ? (
+                                <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
+                              ) : (
+                                link.iconUrl && (
+                                  <Image
+                                    src={link.iconUrl}
+                                    alt={`${link.title} icon`}
+                                    width={20}
+                                    height={20}
+                                    className="w-5 h-5 sm:w-4 sm:h-4"
+                                    style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                                  />
+                                )
+                              )}
+                              <span className="text-base sm:text-sm text-white font-medium truncate">{link.title}</span>
+                            </div>
+                            <span className="text-xs text-white/70 italic">{link.meta ?? 'Coming soon'}</span>
+                          </div>
+                        )
+                      }
+                      return (
+                        <a
+                          key={index}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 py-2 px-2 hover:bg-white/10 rounded-md transition-colors"
+                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        >
                           {link.isLucideIcon && IconComponent ? (
                             <IconComponent className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
                           ) : (
@@ -303,26 +334,14 @@ export default function LinksPage() {
                             )
                           )}
                           <span className="text-base sm:text-sm text-white font-medium truncate">{link.title}</span>
-                        </div>
-                        {link.disabled ? (
-                          <span className="text-xs text-white/70 italic">{link.meta ?? 'Coming soon'}</span>
-                        ) : (
-                          <a
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-white/90 hover:text-white underline underline-offset-4"
-                          >
-                            Visit
-                          </a>
-                        )}
-                      </div>
-                    )
-                  })}
+                        </a>
+                      )
+                    })}
+                  </div>
                 </div>
-              </div>
-            </CollapsibleCard>
-          ))}
+              </CollapsibleCard>
+            ))}
+          </div>
         </div>
 
         {/* Footer */}
