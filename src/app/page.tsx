@@ -234,10 +234,7 @@ const linkCategories: LinkCategory[] = [
 ]
 
 export default function LinksPage() {
-  const [openCategoryIndex, setOpenCategoryIndex] = React.useState<number>(() => {
-    const initiallyOpenIndex = linkCategories.findIndex((c) => c.defaultOpen)
-    return initiallyOpenIndex >= 0 ? initiallyOpenIndex : 0
-  })
+  const [openCategoryIndex, setOpenCategoryIndex] = React.useState<number>(-1)
   return (
     <div className="h-screen overflow-hidden" style={{ background: 'white', fontFamily: 'Montserrat, sans-serif' }}>
       {/* Background */}
@@ -280,7 +277,7 @@ export default function LinksPage() {
                 key={cIdx}
                 title={category.title}
                 open={openCategoryIndex === cIdx}
-                onToggle={() => setOpenCategoryIndex(cIdx)}
+                onToggle={() => setOpenCategoryIndex((prev) => (prev === cIdx ? -1 : cIdx))}
               >
                 <div className="rounded-lg border border-brand-emerald bg-brand-emerald p-2 sm:p-2">
                   <div className="divide-y divide-white/20">
