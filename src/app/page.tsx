@@ -44,23 +44,6 @@ const linkCategories: LinkCategory[] = [
     ],
   },
   {
-    title: 'Community',
-    items: [
-      {
-        title: 'Telegram',
-        url: 'https://t.me/zirodelta',
-        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/telegram.svg',
-        isLucideIcon: false,
-      },
-      {
-        title: 'Discord',
-        url: 'https://discord.gg/YHW275Vpn3',
-        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg',
-        isLucideIcon: false,
-      },
-    ],
-  },
-  {
     title: 'Publicity',
     items: [
       {
@@ -106,18 +89,6 @@ const linkCategories: LinkCategory[] = [
         title: 'Discord',
         url: 'https://discord.com/invite/YHW275Vpn3',
         iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg',
-        isLucideIcon: false,
-      },
-      {
-        title: 'Zealy',
-        url: 'https://zealy.io/cw/zirodelta',
-        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zealy.svg',
-        isLucideIcon: false,
-      },
-      {
-        title: 'Galxe',
-        url: 'https://app.galxe.com/id/H5hMZtRLmzCKZc9oBWEjz9',
-        iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/galxe.svg',
         isLucideIcon: false,
       },
       {
